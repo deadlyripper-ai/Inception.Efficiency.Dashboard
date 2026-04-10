@@ -12,7 +12,7 @@ interface KpiCardProps {
   target?: string | number
 }
 
-const statusConfig = {
+const statusConfig: Record<string, { color: string; bg: string; border: string; badge: 'success' | 'warning' | 'error' | 'neutral' | 'info' }> = {
   on_track: { color: 'text-emerald-400', bg: 'from-emerald-500/5 to-emerald-600/5', border: 'border-emerald-500/20', badge: 'success' },
   at_risk: { color: 'text-amber-400', bg: 'from-amber-500/5 to-amber-600/5', border: 'border-amber-500/20', badge: 'warning' },
   behind: { color: 'text-red-400', bg: 'from-red-500/5 to-red-600/5', border: 'border-red-500/20', badge: 'error' },

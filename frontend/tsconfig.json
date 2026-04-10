@@ -17,8 +17,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "moduleResolution": "node",
-    "baseUrl": ".",
+    "moduleResolution": "bundler",
     "paths": {
       "@/*": [
         "./src/*"

@@ -150,7 +150,7 @@ export class MondayConnector implements IConnector {
 
       // Compute KPIs
       const totalProjects = mockProjects.length
-      const completedProjects = mockProjects.filter((p) => p.completion_pct === 100).length
+      const completedProjects = mockProjects.filter((p: { completion_pct: number }) => p.completion_pct === 100).length
       const onTimePercentage = (completedProjects / totalProjects) * 100
 
       const kpis = [
@@ -159,7 +159,7 @@ export class MondayConnector implements IConnector {
           metric_key: 'projects_per_person',
           label: 'Projects per Person',
           value: 2.0,
-          unit: null,
+          unit: undefined,
           source: this.name,
           period: 'QTD',
           as_of_date: new Date().toISOString().split('T')[0],
@@ -171,7 +171,7 @@ export class MondayConnector implements IConnector {
           value: 48,
           target: 50,
           unit: 'pts',
-          status: 48 >= 50 ? 'on_track' : 'at_risk',
+          status: 48 >= 50 ? 'on_track' as const : 'at_risk' as const,
           source: this.name,
           period: 'Current Sprint',
           as_of_date: new Date().toISOString().split('T')[0],
@@ -183,7 +183,7 @@ export class MondayConnector implements IConnector {
           value: onTimePercentage,
           target: 90,
           unit: '%',
-          status: onTimePercentage >= 90 ? 'on_track' : 'at_risk',
+          status: onTimePercentage >= 90 ? 'on_track' as const : 'at_risk' as const,
           source: this.name,
           period: 'QTD',
           as_of_date: new Date().toISOString().split('T')[0],

@@ -33,6 +33,7 @@ export function DrillDown({ open, onClose, title, subtitle, color = '#625ee9', b
         document.body.style.overflow = 'auto'
       }
     }
+    return undefined
   }, [open, onClose])
 
   return (

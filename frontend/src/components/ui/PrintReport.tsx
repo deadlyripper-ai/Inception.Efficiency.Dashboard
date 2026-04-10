@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { OKR_KR_DATA, HEADCOUNT_DATA, GROWTH_PIPELINE_DETAIL, SPRINT_VELOCITY, DELIVERY_PROJECT_DETAIL } from '@/lib/drilldown-data'
+import { OKR_KR_DATA, HEADCOUNT_DATA, GROWTH_PIPELINE_DETAIL, SPRINT_VELOCITY } from '@/lib/drilldown-data'
 
 export function PrintReport() {
   const currentDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })

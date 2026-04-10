@@ -17,7 +17,7 @@ const msalConfig: Configuration = {
   system: {
     allowRedirectInIframe: true, // Critical for iFrame embedding in SharePoint
     loggerOptions: {
-      loggerCallback: (level, message, containsPii) => {
+      loggerCallback: (_level, message, containsPii) => {
         if (!containsPii && process.env.NODE_ENV === 'development') {
           console.log(`[MSAL] ${message}`)
         }

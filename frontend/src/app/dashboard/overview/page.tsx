@@ -53,7 +53,7 @@ export default function OverviewPage() {
           <div style={{ fontSize: '10px', color: '#5E5E78', marginBottom: '8px' }}>104 deals · On Track</div>
           <Sparkline data={SPARKLINE_DATA['Total Pipeline']} color="#34C77B" width={100} height={28} />
           <div style={{ position: 'absolute', top: '12px', right: '12px', fontSize: '14px', opacity: 0.5, transition: 'opacity 0.2s' }}>↗</div>
-          <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '8px', color: '#5E5E78', display: 'flex', alignItems: 'center', gap: '3px', cursor: 'help', title: 'Updated live from D365 Sales' }}>● Live</div>
+          <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '8px', color: '#5E5E78', display: 'flex', alignItems: 'center', gap: '3px', cursor: 'help' }} title="Updated live from D365 Sales">● Live</div>
         </div>
         <div
           style={{ padding: '17px 20px', borderRight: '1px solid rgba(255,255,255,0.07)', cursor: 'pointer', transition: 'all 0.2s', position: 'relative' }}
@@ -67,7 +67,7 @@ export default function OverviewPage() {
           <div style={{ fontSize: '10px', color: '#5E5E78', marginBottom: '8px' }}>Target 40% · At Risk</div>
           <Sparkline data={SPARKLINE_DATA['Win Probability'].map((v) => v * 10)} color="#f28157" width={100} height={28} />
           <div style={{ position: 'absolute', top: '12px', right: '12px', fontSize: '14px', opacity: 0.5, transition: 'opacity 0.2s' }}>↗</div>
-          <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '8px', color: '#5E5E78', display: 'flex', alignItems: 'center', gap: '3px', cursor: 'help', title: 'Updated live from D365 Sales' }}>● Live</div>
+          <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '8px', color: '#5E5E78', display: 'flex', alignItems: 'center', gap: '3px', cursor: 'help' }} title="Updated live from D365 Sales">● Live</div>
         </div>
         <div
           style={{ padding: '17px 20px', borderRight: '1px solid rgba(255,255,255,0.07)', cursor: 'pointer', transition: 'all 0.2s', position: 'relative' }}
@@ -81,7 +81,7 @@ export default function OverviewPage() {
           <div style={{ fontSize: '10px', color: '#5E5E78', marginBottom: '8px' }}>Target 80/20 · At Risk</div>
           <Sparkline data={SPARKLINE_DATA['Product Ratio']} color="#f28157" width={100} height={28} />
           <div style={{ position: 'absolute', top: '12px', right: '12px', fontSize: '14px', opacity: 0.5, transition: 'opacity 0.2s' }}>↗</div>
-          <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '8px', color: '#5E5E78', display: 'flex', alignItems: 'center', gap: '3px', cursor: 'help', title: 'Updated live from D365 Sales' }}>● Live</div>
+          <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '8px', color: '#5E5E78', display: 'flex', alignItems: 'center', gap: '3px', cursor: 'help' }} title="Updated live from D365 Sales">● Live</div>
         </div>
         <div
           style={{ padding: '17px 20px', cursor: 'pointer', transition: 'all 0.2s', position: 'relative' }}
@@ -95,7 +95,7 @@ export default function OverviewPage() {
           <div style={{ fontSize: '10px', color: '#5E5E78', marginBottom: '8px' }}>Target 80% · At Risk</div>
           <Sparkline data={SPARKLINE_DATA['OKR Progress']} color="#f28157" width={100} height={28} />
           <div style={{ position: 'absolute', top: '12px', right: '12px', fontSize: '14px', opacity: 0.5, transition: 'opacity 0.2s' }}>↗</div>
-          <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '8px', color: '#5E5E78', display: 'flex', alignItems: 'center', gap: '3px', cursor: 'help', title: 'Updated 1h ago from WorkBoard' }}>⏱ 1h ago</div>
+          <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '8px', color: '#5E5E78', display: 'flex', alignItems: 'center', gap: '3px', cursor: 'help' }} title="Updated 1h ago from WorkBoard">⏱ 1h ago</div>
         </div>
       </div>
 

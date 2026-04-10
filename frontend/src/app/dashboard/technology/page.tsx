@@ -380,66 +380,70 @@ export default function TechnologyPage() {
           title={selectedDept}
           color="#579BFC"
         >
-          {TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL] && (
-            <>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px', marginBottom: '18px' }}>
-                {Object.entries(TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].topMetrics).map(([key, val]) => (
-                  <div key={key} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
-                    <div style={{ fontSize: '10px', color: '#9898B0', marginBottom: '4px', textTransform: 'capitalize' }}>{key.replace(/([A-Z])/g, ' $1').trim()}</div>
-                    <div style={{ fontSize: '14px', fontWeight: 700, color: '#F0F0F6' }}>{val}</div>
-                  </div>
-                ))}
-              </div>
+          {(() => {
+            const deptDetail = TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL] as any
+            if (!deptDetail) return null
+            return (
+              <>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px', marginBottom: '18px' }}>
+                  {Object.entries(deptDetail.topMetrics).map(([key, val]) => (
+                    <div key={key} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '10px', color: '#9898B0', marginBottom: '4px', textTransform: 'capitalize' }}>{key.replace(/([A-Z])/g, ' $1').trim()}</div>
+                      <div style={{ fontSize: '14px', fontWeight: 700, color: '#F0F0F6' }}>{val as string}</div>
+                    </div>
+                  ))}
+                </div>
 
-              {TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].teamMembers && (
-                <>
-                  <div style={{ fontSize: '11px', fontWeight: 600, color: '#9898B0', marginBottom: '8px' }}>Team Members</div>
-                  {TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].teamMembers?.map((member: any, i: number) => (
-                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: i < (TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].teamMembers?.length || 0) - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: '12px' }}>
-                      <div>
-                        <div style={{ color: '#F0F0F6', fontWeight: 500 }}>{member.name}</div>
-                        <div style={{ color: '#9898B0', fontSize: '10px' }}>{member.role}</div>
+                {deptDetail.teamMembers && (
+                  <>
+                    <div style={{ fontSize: '11px', fontWeight: 600, color: '#9898B0', marginBottom: '8px' }}>Team Members</div>
+                    {deptDetail.teamMembers?.map((member: any, i: number) => (
+                      <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: i < (deptDetail.teamMembers?.length || 0) - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: '12px' }}>
+                        <div>
+                          <div style={{ color: '#F0F0F6', fontWeight: 500 }}>{member.name}</div>
+                          <div style={{ color: '#9898B0', fontSize: '10px' }}>{member.role}</div>
+                        </div>
+                        <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 9px', borderRadius: '20px', background: member.status === 'on track' ? 'rgba(52,199,123,0.12)' : 'rgba(232,132,74,0.12)', color: member.status === 'on track' ? '#34C77B' : '#f28157', border: member.status === 'on track' ? '1px solid rgba(52,199,123,0.25)' : '1px solid rgba(232,132,74,0.25)' }}>
+                          {member.status === 'on track' ? 'On Track' : 'At Risk'}
+                        </span>
                       </div>
-                      <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 9px', borderRadius: '20px', background: member.status === 'on track' ? 'rgba(52,199,123,0.12)' : 'rgba(232,132,74,0.12)', color: member.status === 'on track' ? '#34C77B' : '#f28157', border: member.status === 'on track' ? '1px solid rgba(52,199,123,0.25)' : '1px solid rgba(232,132,74,0.25)' }}>
-                        {member.status === 'on track' ? 'On Track' : 'At Risk'}
-                      </span>
-                    </div>
-                  ))}
-                </>
-              )}
+                    ))}
+                  </>
+                )}
 
-              {TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].currentWork && (
-                <>
-                  <div style={{ fontSize: '11px', fontWeight: 600, color: '#9898B0', marginBottom: '8px', marginTop: '16px' }}>Current Work</div>
-                  {TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].currentWork?.map((work: string, i: number) => (
-                    <div key={i} style={{ fontSize: '12px', color: '#E0E0E0', padding: '6px 0' }}>
-                      • {work}
-                    </div>
-                  ))}
-                </>
-              )}
+                {deptDetail.currentWork && (
+                  <>
+                    <div style={{ fontSize: '11px', fontWeight: 600, color: '#9898B0', marginBottom: '8px', marginTop: '16px' }}>Current Work</div>
+                    {deptDetail.currentWork?.map((work: string, i: number) => (
+                      <div key={i} style={{ fontSize: '12px', color: '#E0E0E0', padding: '6px 0' }}>
+                        • {work}
+                      </div>
+                    ))}
+                  </>
+                )}
 
-              {TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].releases && (
-                <>
-                  <div style={{ fontSize: '11px', fontWeight: 600, color: '#9898B0', marginBottom: '8px', marginTop: '16px' }}>Releases</div>
-                  {TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].releases?.map((release: string, i: number) => (
-                    <div key={i} style={{ fontSize: '12px', color: '#E0E0E0', padding: '6px 0' }}>
-                      • {release}
-                    </div>
-                  ))}
-                </>
-              )}
+                {deptDetail.releases && (
+                  <>
+                    <div style={{ fontSize: '11px', fontWeight: 600, color: '#9898B0', marginBottom: '8px', marginTop: '16px' }}>Releases</div>
+                    {deptDetail.releases?.map((release: string, i: number) => (
+                      <div key={i} style={{ fontSize: '12px', color: '#E0E0E0', padding: '6px 0' }}>
+                        • {release}
+                      </div>
+                    ))}
+                  </>
+                )}
 
-              {TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].status && (
-                <>
-                  <div style={{ fontSize: '11px', fontWeight: 600, color: '#9898B0', marginBottom: '8px', marginTop: '16px' }}>Status</div>
-                  <div style={{ fontSize: '12px', color: '#E0E0E0' }}>
-                    {TECH_DEPT_DETAIL[selectedDept as keyof typeof TECH_DEPT_DETAIL].status}
-                  </div>
-                </>
-              )}
-            </>
-          )}
+                {deptDetail.status && (
+                  <>
+                    <div style={{ fontSize: '11px', fontWeight: 600, color: '#9898B0', marginBottom: '8px', marginTop: '16px' }}>Status</div>
+                    <div style={{ fontSize: '12px', color: '#E0E0E0' }}>
+                      {deptDetail.status}
+                    </div>
+                  </>
+                )}
+              </>
+            )
+          })()}
         </DrillDown>
       )}
     </div>
