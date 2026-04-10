@@ -7,14 +7,20 @@ import { CommandPalette } from '@/components/ui/CommandPalette'
 import { PrintReport } from '@/components/ui/PrintReport'
 import { DateRangeProvider, useDateRange } from '@/lib/date-range-context'
 
-const navItems = [
-  { name: 'Overview', href: '/dashboard/overview', icon: '📊' },
-  { name: 'Growth', href: '/dashboard/growth', icon: '📈' },
-  { name: 'Technology', href: '/dashboard/technology', icon: '⚙️' },
-  { name: 'Delivery', href: '/dashboard/delivery', icon: '🚀' },
-  { name: 'Corporate', href: '/dashboard/corporate', icon: '💼' },
-  { name: 'OKRs', href: '/dashboard/okrs', icon: '🎯' },
-]
+const navSections = {
+  navigate: [
+    { name: 'Overview', href: '/dashboard/overview', icon: '📊' },
+  ],
+  pillars: [
+    { name: 'Growth', href: '/dashboard/growth', icon: '📈' },
+    { name: 'Technology', href: '/dashboard/technology', icon: '⚙️' },
+    { name: 'Delivery', href: '/dashboard/delivery', icon: '🚀' },
+    { name: 'Corporate', href: '/dashboard/corporate', icon: '💼' },
+  ],
+  performance: [
+    { name: 'OKRs', href: '/dashboard/okrs', icon: '🎯' },
+  ],
+}
 
 function DashboardLayoutContent({
   children,
@@ -44,44 +50,61 @@ function DashboardLayoutContent({
               I
             </div>
           ) : (
-            <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px', height: '32px' }}>
-                <img src="https://inceptionai.ai/wp-content/uploads/2024/07/inception-fullwhite-rgb404x.png" alt="Inception AI" style={{ height: '24px', width: 'auto', objectFit: 'contain' }} />
-              </div>
-              <div style={{ fontSize: '10px', color: '#5E5E78', letterSpacing: '0.05em', marginTop: '-2px' }}>A G42 company</div>
-              <div style={{ display: 'inline-block', marginTop: '9px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.12em', background: 'rgba(98,94,233,0.12)', color: '#b1affa', border: '1px solid rgba(98,94,233,0.2)', padding: '3px 9px', borderRadius: '20px' }}>EFFICIENCY DASHBOARD</div>
-            </>
+            <img src="https://inceptionai.ai/wp-content/uploads/2024/07/inception-fullwhite-rgb404x.png" alt="Inception AI" style={{ height: '32px', width: 'auto', objectFit: 'contain' }} />
           )}
         </div>
 
-        {/* Nav Items */}
-        {!sidebarCollapsed && <div style={{ padding: '18px 18px 5px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.16em', color: '#5E5E78', textTransform: 'uppercase' }}>Navigate</div>}
-        {navItems.map((item) => (
-          <Link key={item.href} href={item.href}>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '9px',
-                padding: '8px 12px',
-                margin: '1px 8px',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontSize: '13px',
-                fontWeight: 500,
-                color: isActive(item.href) ? '#b1affa' : '#9898B0',
-                transition: 'all 0.18s',
-                border: '1px solid transparent',
-                background: isActive(item.href) ? 'rgba(98,94,233,0.12)' : 'transparent',
-                borderColor: isActive(item.href) ? 'rgba(98,94,233,0.2)' : 'transparent',
-              }}
-            >
-              <span style={{ fontSize: sidebarCollapsed ? '16px' : '14px' }}>{item.icon}</span>
-              {!sidebarCollapsed && item.name}
-              {isActive(item.href) && !sidebarCollapsed && <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'currentColor', marginLeft: 'auto', opacity: 1 }} />}
-            </div>
-          </Link>
-        ))}
+        {/* Nav Sections */}
+        {!sidebarCollapsed && (
+          <>
+            {/* NAVIGATE */}
+            <div style={{ padding: '18px 18px 5px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.16em', color: '#5E5E78', textTransform: 'uppercase' }}>Navigate</div>
+            {navSections.navigate.map((item) => (
+              <Link key={item.href} href={item.href}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '9px', padding: '10px 12px', margin: '1px 8px', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', fontWeight: 500, color: isActive(item.href) ? '#b1affa' : '#9898B0', transition: 'all 0.18s', border: '1px solid transparent', background: isActive(item.href) ? 'rgba(98,94,233,0.12)' : 'transparent', borderColor: isActive(item.href) ? 'rgba(98,94,233,0.2)' : 'transparent' }}>
+                  <span style={{ fontSize: '14px' }}>{item.icon}</span>
+                  {item.name}
+                  {isActive(item.href) && <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'currentColor', marginLeft: 'auto', opacity: 1 }} />}
+                </div>
+              </Link>
+            ))}
+
+            {/* PILLARS */}
+            <div style={{ padding: '18px 18px 5px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.16em', color: '#5E5E78', textTransform: 'uppercase', marginTop: '8px' }}>Pillars</div>
+            {navSections.pillars.map((item) => (
+              <Link key={item.href} href={item.href}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '9px', padding: '10px 12px', margin: '1px 8px', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', fontWeight: 500, color: isActive(item.href) ? '#b1affa' : '#9898B0', transition: 'all 0.18s', border: '1px solid transparent', background: isActive(item.href) ? 'rgba(98,94,233,0.12)' : 'transparent', borderColor: isActive(item.href) ? 'rgba(98,94,233,0.2)' : 'transparent' }}>
+                  <span style={{ fontSize: '14px' }}>{item.icon}</span>
+                  {item.name}
+                  {isActive(item.href) && <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'currentColor', marginLeft: 'auto', opacity: 1 }} />}
+                </div>
+              </Link>
+            ))}
+
+            {/* PERFORMANCE */}
+            <div style={{ padding: '18px 18px 5px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.16em', color: '#5E5E78', textTransform: 'uppercase', marginTop: '8px' }}>Performance</div>
+            {navSections.performance.map((item) => (
+              <Link key={item.href} href={item.href}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '9px', padding: '10px 12px', margin: '1px 8px', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', fontWeight: 500, color: isActive(item.href) ? '#b1affa' : '#9898B0', transition: 'all 0.18s', border: '1px solid transparent', background: isActive(item.href) ? 'rgba(98,94,233,0.12)' : 'transparent', borderColor: isActive(item.href) ? 'rgba(98,94,233,0.2)' : 'transparent' }}>
+                  <span style={{ fontSize: '14px' }}>{item.icon}</span>
+                  {item.name}
+                  {isActive(item.href) && <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'currentColor', marginLeft: 'auto', opacity: 1 }} />}
+                </div>
+              </Link>
+            ))}
+          </>
+        )}
+        {sidebarCollapsed && (
+          <>
+            {Object.values(navSections).flat().map((item) => (
+              <Link key={item.href} href={item.href}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 8px', margin: '2px 8px', borderRadius: '8px', cursor: 'pointer', fontSize: '16px', color: isActive(item.href) ? '#b1affa' : '#9898B0', transition: 'all 0.18s', background: isActive(item.href) ? 'rgba(98,94,233,0.12)' : 'transparent' }}>
+                  {item.icon}
+                </div>
+              </Link>
+            ))}
+          </>
+        )}
 
         {/* Footer */}
         <div style={{ marginTop: 'auto', padding: '14px 14px 16px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
