@@ -184,7 +184,10 @@ export default function CorporatePage() {
         {deptList.map((dept, i) => (
           <div
             key={i}
-            onClick={() => setSelectedDept(dept.name)}
+            onClick={() => {
+              setSelectedDept(dept.name)
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
             style={{
               display: 'flex',
               alignItems: 'center',
