@@ -25,8 +25,8 @@ export default function GrowthPage() {
         </div>
       </div>
 
-      {/* KPI Cards Grid - 3 columns */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px', marginBottom: '18px' }}>
+      {/* KPI Cards Grid - 4 columns */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px', marginBottom: '18px' }}>
         {[
           { title: 'Total Pipeline (TCV)', value: '$317.9M', status: 'on', target: 'Target: $245M', note: '104 active deals · Feb 2026 export', vsPct: '130%', source: 'D365 Sales' },
           { title: 'Weighted Pipeline', value: '$110.2M', status: 'risk', target: 'Target: $120M', note: 'TCV × win probability · realistic expected revenue', vsPct: '92%', source: 'D365 Sales' },

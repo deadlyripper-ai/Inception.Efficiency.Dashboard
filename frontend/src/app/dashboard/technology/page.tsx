@@ -42,8 +42,8 @@ export default function TechnologyPage() {
         </div>
       </div>
 
-      {/* KPI Cards Grid - 3 columns */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px', marginBottom: '18px' }}>
+      {/* KPI Cards Grid - 4 columns */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px', marginBottom: '18px' }}>
         {kpiList.map((kpi) => (
           <div
             key={kpi.key}

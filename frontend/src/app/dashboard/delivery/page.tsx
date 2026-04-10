@@ -37,8 +37,8 @@ export default function DeliveryPage() {
         <div style={{ fontSize: '13px', color: '#9898B0' }}>Project delivery · Customer success · Training</div>
       </div>
 
-      {/* KPI Cards Grid - 2 columns, max-width 720px */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '12px', marginBottom: '18px', maxWidth: '720px' }}>
+      {/* KPI Cards Grid - 4 columns */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px', marginBottom: '18px' }}>
         {kpiList.map((kpi) => (
           <div
             key={kpi.key}
