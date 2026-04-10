@@ -47,17 +47,17 @@ export default function DeliveryPage() {
               background: '#1a1a1a',
               border: '1px solid rgba(255,255,255,0.07)',
               borderRadius: '18px',
-              padding: '18px 20px',
+              padding: '16px 18px',
               position: 'relative',
               overflow: 'hidden',
               cursor: 'pointer',
               borderTop: `3px solid ${kpi.status === 'live' ? '#34C77B' : '#625ee9'}`,
               boxShadow: '0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.15)',
-              transition: 'all 0.2s ease',
+              transition: 'all 0.2s',
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLDivElement
-              el.style.transform = 'translateY(-2px)'
+              el.style.transform = 'translateY(-1px)'
               el.style.boxShadow = '0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08)'
             }}
             onMouseLeave={(e) => {
@@ -66,16 +66,16 @@ export default function DeliveryPage() {
               el.style.boxShadow = '0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.15)'
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 500, color: '#9898B0' }}>{kpi.title}</div>
-              <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 9px', borderRadius: '20px', background: kpi.status === 'live' ? 'rgba(52,199,123,0.12)' : 'rgba(138,135,196,0.12)', color: kpi.status === 'live' ? '#34C77B' : '#b1affa', border: `1px solid ${kpi.status === 'live' ? 'rgba(52,199,123,0.25)' : 'rgba(138,135,196,0.25)'}` }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.08em', color: '#5E5E78', textTransform: 'uppercase' }}>{kpi.title}</div>
+              <span style={{ fontSize: '9px', fontWeight: 600, padding: '2px 8px', borderRadius: '12px', background: kpi.status === 'live' ? 'rgba(52,199,123,0.12)' : 'rgba(138,135,196,0.12)', color: kpi.status === 'live' ? '#34C77B' : '#b1affa', border: `1px solid ${kpi.status === 'live' ? 'rgba(52,199,123,0.25)' : 'rgba(138,135,196,0.25)'}` }}>
                 {kpi.status === 'live' ? 'Live' : 'Pending'}
               </span>
             </div>
-            <div style={{ fontSize: '26px', fontWeight: 800, lineHeight: 1, letterSpacing: '-0.02em', marginBottom: '6px', color: kpi.status === 'live' ? '#34C77B' : '#F0F0F6' }}>{kpi.value}</div>
-            <div style={{ fontSize: '10px', color: '#5E5E78', marginBottom: '5px' }}>{kpi.target}</div>
-            <div style={{ fontSize: '10px', color: '#5E5E78', fontStyle: 'italic', lineHeight: 1.4, marginBottom: '13px' }}>{kpi.note}</div>
-            <div style={{ fontSize: '9px', fontWeight: 600, padding: '3px 8px', borderRadius: '5px', display: 'inline-block', background: 'rgba(0,120,212,0.1)', color: '#5ba8e8', border: '1px solid rgba(0,120,212,0.2)', fontFamily: 'DM Mono' }}>
+            <div style={{ fontSize: '24px', fontWeight: 800, lineHeight: 1, letterSpacing: '-0.02em', marginBottom: '4px', color: kpi.status === 'live' ? '#34C77B' : '#F0F0F6' }}>{kpi.value}</div>
+            <div style={{ fontSize: '9px', color: '#5E5E78', marginBottom: '6px' }}>{kpi.target}</div>
+            <div style={{ fontSize: '9px', color: '#5E5E78', fontStyle: 'italic', lineHeight: 1.3, marginBottom: '10px' }}>{kpi.note}</div>
+            <div style={{ fontSize: '8px', fontWeight: 600, padding: '2px 6px', borderRadius: '4px', display: 'inline-block', background: 'rgba(0,120,212,0.1)', color: '#5ba8e8', border: '1px solid rgba(0,120,212,0.2)', fontFamily: 'DM Mono' }}>
               {kpi.source}
             </div>
           </div>

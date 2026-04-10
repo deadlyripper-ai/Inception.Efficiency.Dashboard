@@ -41,18 +41,18 @@ export default function GrowthPage() {
               background: '#1a1a1a',
               border: '1px solid rgba(255,255,255,0.07)',
               borderRadius: '18px',
-              padding: '18px 20px',
+              padding: '16px 18px',
               position: 'relative',
               overflow: 'hidden',
               borderTop: `3px solid ${kpi.status === 'on' ? '#34C77B' : kpi.status === 'risk' ? '#f28157' : kpi.status === 'live' ? '#34C77B' : '#625ee9'}`,
               cursor: 'pointer',
-              transition: 'all 0.22s',
+              transition: 'all 0.2s',
               boxShadow: '0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.15)',
             }}
             onClick={() => setSelectedKpi(kpi.title)}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement
-              el.style.transform = 'translateY(-2px)'
+              el.style.transform = 'translateY(-1px)'
               el.style.boxShadow = '0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08)'
             }}
             onMouseLeave={(e) => {
@@ -61,26 +61,26 @@ export default function GrowthPage() {
               el.style.boxShadow = '0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.15)'
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 500, color: '#9898B0' }}>{kpi.title}</div>
-              <span style={{ fontSize: '10px', fontWeight: 600, padding: '3px 9px', borderRadius: '20px', background: kpi.status === 'on' ? 'rgba(52,199,123,0.12)' : kpi.status === 'risk' ? 'rgba(232,132,74,0.12)' : kpi.status === 'live' ? 'rgba(52,199,123,0.12)' : 'rgba(138,135,196,0.12)', color: kpi.status === 'on' ? '#34C77B' : kpi.status === 'risk' ? '#f28157' : kpi.status === 'live' ? '#34C77B' : '#b1affa', border: `1px solid ${kpi.status === 'on' ? 'rgba(52,199,123,0.25)' : kpi.status === 'risk' ? 'rgba(232,132,74,0.25)' : kpi.status === 'live' ? 'rgba(52,199,123,0.25)' : 'rgba(138,135,196,0.25)'}` }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.08em', color: '#5E5E78', textTransform: 'uppercase' }}>{kpi.title}</div>
+              <span style={{ fontSize: '9px', fontWeight: 600, padding: '2px 8px', borderRadius: '12px', background: kpi.status === 'on' ? 'rgba(52,199,123,0.12)' : kpi.status === 'risk' ? 'rgba(232,132,74,0.12)' : kpi.status === 'live' ? 'rgba(52,199,123,0.12)' : 'rgba(138,135,196,0.12)', color: kpi.status === 'on' ? '#34C77B' : kpi.status === 'risk' ? '#f28157' : kpi.status === 'live' ? '#34C77B' : '#b1affa', border: `1px solid ${kpi.status === 'on' ? 'rgba(52,199,123,0.25)' : kpi.status === 'risk' ? 'rgba(232,132,74,0.25)' : kpi.status === 'live' ? 'rgba(52,199,123,0.25)' : 'rgba(138,135,196,0.25)'}` }}>
                 {kpi.status === 'on' ? 'On Track' : kpi.status === 'risk' ? 'At Risk' : kpi.status === 'live' ? 'Live' : 'Pending'}
               </span>
             </div>
-            <div style={{ fontSize: '36px', fontWeight: 800, lineHeight: 1, letterSpacing: '-0.02em', marginBottom: '6px', color: kpi.status === 'on' || kpi.status === 'live' ? '#34C77B' : kpi.status === 'risk' ? '#f28157' : '#F0F0F6' }}>{kpi.value}</div>
-            <div style={{ fontSize: '10px', color: '#5E5E78', marginBottom: '5px' }}>{kpi.target}</div>
-            <div style={{ fontSize: '10px', color: '#5E5E78', fontStyle: 'italic', lineHeight: 1.4, marginBottom: '13px' }}>{kpi.note}</div>
+            <div style={{ fontSize: '24px', fontWeight: 800, lineHeight: 1, letterSpacing: '-0.02em', marginBottom: '4px', color: kpi.status === 'on' || kpi.status === 'live' ? '#34C77B' : kpi.status === 'risk' ? '#f28157' : '#F0F0F6' }}>{kpi.value}</div>
+            <div style={{ fontSize: '9px', color: '#5E5E78', marginBottom: '6px' }}>{kpi.target}</div>
+            <div style={{ fontSize: '9px', color: '#5E5E78', fontStyle: 'italic', lineHeight: 1.3, marginBottom: '10px' }}>{kpi.note}</div>
             {kpi.vsPct && (
-              <div style={{ marginTop: '13px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: '#5E5E78', marginBottom: '5px' }}>
+              <div style={{ marginTop: '8px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '8px', color: '#5E5E78', marginBottom: '3px' }}>
                   <span>vs Target</span><span>{kpi.vsPct}</span>
                 </div>
-                <div style={{ height: '5px', background: 'rgba(255,255,255,0.06)', borderRadius: '5px', overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${parseInt(kpi.vsPct)}%`, background: kpi.status === 'on' ? '#34C77B' : '#f28157', borderRadius: '5px', transition: 'width 1.1s cubic-bezier(0.4,0,0.2,1)' }} />
+                <div style={{ height: '4px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px', overflow: 'hidden' }}>
+                  <div style={{ height: '100%', width: `${parseInt(kpi.vsPct)}%`, background: kpi.status === 'on' ? '#34C77B' : '#f28157', borderRadius: '3px', transition: 'width 1s cubic-bezier(0.4,0,0.2,1)' }} />
                 </div>
               </div>
             )}
-            <div style={{ fontSize: '9px', fontWeight: 600, padding: '3px 8px', borderRadius: '5px', marginTop: '10px', background: 'rgba(0,120,212,0.1)', color: '#5ba8e8', border: '1px solid rgba(0,120,212,0.2)', display: 'inline-block', fontFamily: 'DM Mono' }}>
+            <div style={{ fontSize: '8px', fontWeight: 600, padding: '2px 6px', borderRadius: '4px', marginTop: '8px', background: 'rgba(0,120,212,0.1)', color: '#5ba8e8', border: '1px solid rgba(0,120,212,0.2)', display: 'inline-block', fontFamily: 'DM Mono' }}>
               {kpi.source}
             </div>
           </div>
