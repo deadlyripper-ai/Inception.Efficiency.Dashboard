@@ -1,3 +1,5 @@
 {
-  "projectName": "inception-dashboard"
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm ci --legacy-peer-deps"
 }
