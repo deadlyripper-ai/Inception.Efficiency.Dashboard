@@ -18,7 +18,7 @@ const statusConfig: Record<string, { color: string; bg: string; border: string; 
   behind: { color: 'text-red-400', bg: 'from-red-500/5 to-red-600/5', border: 'border-red-500/20', badge: 'error' },
 }
 
-export const KpiCard: React.FC<KpiCardProps> = ({
+const KpiCardComponent: React.FC<KpiCardProps> = ({
   title,
   value,
   unit,
@@ -78,3 +78,5 @@ export const KpiCard: React.FC<KpiCardProps> = ({
     </div>
   )
 }
+
+export const KpiCard = React.memo(KpiCardComponent)

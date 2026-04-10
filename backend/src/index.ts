@@ -7,6 +7,8 @@ import okrRoutes from './routes/okr.routes.js'
 import projectRoutes from './routes/projects.routes.js'
 import pipelineRoutes from './routes/pipeline.routes.js'
 import syncRoutes from './routes/sync.routes.js'
+import { rateLimiters } from './lib/rate-limiter.js'
+import { securityHeaders } from './lib/security-headers.js'
 
 dotenv.config()
 
@@ -15,16 +17,17 @@ const PORT = process.env.PORT || 3001
 
 // ===== MIDDLEWARE =====
 app.use(cors({
-  origin: [
-    process.env.FRONTEND_URL || 'http://localhost:3000',
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'https://*.vercel.app',
-    'https://*.sharepoint.com',
-  ],
+  origin: (process.env.ALLOWED_ORIGINS || 'http://localhost:3000').split(','),
   credentials: true,
 }))
 app.use(express.json())
+
+// Security headers
+app.use(securityHeaders)
+
+// Rate limiting
+app.use('/api/', rateLimiters.general)
+app.use('/api/sync', rateLimiters.sync)
 
 // Request logging
 app.use((req: Request, res: Response, next: NextFunction) => {

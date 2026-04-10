@@ -102,3 +102,75 @@ export const SYNC_STATUS = {
   success: { label: 'Synced', icon: '✓' },
   error: { label: 'Error', icon: '✗' },
 } as const
+
+// ===== TIMEOUTS (milliseconds) =====
+export const TIMEOUTS = {
+  apiRequest: 5000,
+  syncJob: 30000,
+  animation: 300,
+  debounce: 300,
+  errorRetry: 1000,
+} as const
+
+// ===== ROUTES =====
+export const ROUTES = {
+  dashboard: '/dashboard',
+  overview: '/dashboard/overview',
+  growth: '/dashboard/growth',
+  technology: '/dashboard/technology',
+  delivery: '/dashboard/delivery',
+  corporate: '/dashboard/corporate',
+  okrs: '/dashboard/okrs',
+  auth: {
+    callback: '/auth/callback',
+  },
+} as const
+
+// ===== API ENDPOINTS =====
+export const API_ENDPOINTS = {
+  kpis: '/api/kpis',
+  okrs: '/api/okrs',
+  projects: '/api/projects',
+  pipeline: '/api/pipeline',
+  sync: '/api/sync',
+  health: '/health',
+} as const
+
+// ===== VALIDATION RULES =====
+export const VALIDATION_RULES = {
+  minSearchLength: 2,
+  maxFilterDepth: 3,
+  minPasswordLength: 8,
+} as const
+
+// ===== ERROR MESSAGES =====
+export const ERROR_MESSAGES = {
+  loadFailed: 'Failed to load data. Please try again.',
+  syncFailed: 'Sync failed. Please check your connection.',
+  authFailed: 'Authentication failed. Please log in again.',
+  notFound: 'Resource not found.',
+  unauthorized: 'You do not have permission to access this.',
+  serverError: 'An unexpected error occurred. Our team has been notified.',
+  networkError: 'Network connection error. Please check your connection.',
+} as const
+
+// ===== SUCCESS MESSAGES =====
+export const SUCCESS_MESSAGES = {
+  syncComplete: 'Data sync completed successfully.',
+  settingsSaved: 'Settings saved successfully.',
+  filterApplied: 'Filter applied.',
+  exportComplete: 'Export completed. Downloading...',
+} as const
+
+// ===== CACHE SETTINGS =====
+export const CACHE_SETTINGS = {
+  kpiTTL: 60 * 5, // 5 minutes
+  okrTTL: 60 * 10, // 10 minutes
+  projectTTL: 60 * 15, // 15 minutes
+} as const
+
+// ===== PAGINATION =====
+export const PAGINATION = {
+  defaultPageSize: 20,
+  maxPageSize: 100,
+} as const
