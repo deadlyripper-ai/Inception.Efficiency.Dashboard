@@ -86,92 +86,155 @@ export default function CorporatePage() {
       </div>
 
       <div style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '18px', padding: '20px', marginBottom: '18px', boxShadow: '0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.15)' }}>
-        {/* Legend */}
-        <div style={{ display: 'flex', gap: '20px', marginBottom: '20px', paddingBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.07)', fontSize: '11px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ width: '12px', height: '12px', borderRadius: '2px', background: '#625ee9' }} />
-            <span style={{ color: '#9898B0' }}>Q4 2025</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ width: '12px', height: '12px', borderRadius: '2px', background: '#34C77B' }} />
-            <span style={{ color: '#9898B0' }}>Q1 2026 Actual</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ width: '12px', height: '12px', borderRadius: '2px', background: 'rgba(138,135,196,0.3)' }} />
-            <span style={{ color: '#9898B0' }}>Planned</span>
-          </div>
-        </div>
+        <svg width="100%" height="340" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
+          <defs>
+            {/* Gradients for each department */}
+            <linearGradient id="appliedSciGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#625ee9', stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: '#625ee9', stopOpacity: 0.05 }} />
+            </linearGradient>
+            <linearGradient id="engineeringGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#34C77B', stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: '#34C77B', stopOpacity: 0.05 }} />
+            </linearGradient>
+            <linearGradient id="growthGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#f28157', stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: '#f28157', stopOpacity: 0.05 }} />
+            </linearGradient>
+            <linearGradient id="financeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#ffc107', stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: '#ffc107', stopOpacity: 0.05 }} />
+            </linearGradient>
+            <linearGradient id="hcGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#00bcd4', stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: '#00bcd4', stopOpacity: 0.05 }} />
+            </linearGradient>
+            <linearGradient id="legalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#9c27b0', stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: '#9c27b0', stopOpacity: 0.05 }} />
+            </linearGradient>
+            <linearGradient id="marketingGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#ff5722', stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: '#ff5722', stopOpacity: 0.05 }} />
+            </linearGradient>
+            <linearGradient id="strategyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#4db8ff', stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: '#4db8ff', stopOpacity: 0.05 }} />
+            </linearGradient>
+          </defs>
 
-        <svg width="100%" height={HEADCOUNT_DATA.length * 35 + 20} viewBox={`0 0 500 ${HEADCOUNT_DATA.length * 35 + 20}`} style={{ marginBottom: '12px' }}>
+          {/* Background grid */}
+          <line x1="40" y1="250" x2="560" y2="250" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+          <line x1="40" y1="200" x2="560" y2="200" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="2,2" />
+          <line x1="40" y1="150" x2="560" y2="150" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="2,2" />
+          <line x1="40" y1="100" x2="560" y2="100" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="2,2" />
+
+          {/* Y-axis labels */}
+          <text x="30" y="255" fontSize="9" fill="#5E5E78" textAnchor="end">0</text>
+          <text x="30" y="205" fontSize="9" fill="#5E5E78" textAnchor="end">50</text>
+          <text x="30" y="155" fontSize="9" fill="#5E5E78" textAnchor="end">100</text>
+
+          {/* Department bars with Q4 vs Q1 */}
           {HEADCOUNT_DATA.map((item, i) => {
-            const y = i * 35 + 10
-            const maxValue = 35
-            const scale = 250 / maxValue
+            const colors = ['#625ee9', '#34C77B', '#f28157', '#ffc107', '#00bcd4', '#9c27b0', '#ff5722', '#4db8ff']
+            const x = 40 + (i / HEADCOUNT_DATA.length) * 520
+            const barWidth = (520 / HEADCOUNT_DATA.length) * 0.7
+            const q4Height = (item.q4_actual / 120) * 150
+            const q1Height = (item.q1_actual / 120) * 150
+            const plannedHeight = (item.planned / 120) * 150
 
             return (
               <g key={i}>
-                {/* Department label */}
-                <text x="5" y={y + 18} fontSize="11" fill="#F0F0F6" fontWeight="600">
-                  {item.dept}
-                </text>
-
-                {/* Q4 bar */}
+                {/* Q4 bar (darker) */}
                 <rect
-                  x="130"
-                  y={y + 5 + (maxValue - item.q4_actual) * 0.6}
-                  width={item.q4_actual * 2.5}
-                  height={item.q4_actual * 0.6}
-                  fill="#625ee9"
+                  x={x - barWidth / 2 - 8}
+                  y={250 - q4Height}
+                  width={barWidth / 2 - 2}
+                  height={q4Height}
+                  fill={colors[i]}
+                  opacity="0.5"
                   rx="2"
                 />
-                <text x={130 + item.q4_actual * 2.5 + 4} y={y + 18} fontSize="9" fill="#9898B0">
+
+                {/* Q1 bar (brighter) */}
+                <rect
+                  x={x - barWidth / 2 + 8}
+                  y={250 - q1Height}
+                  width={barWidth / 2 - 2}
+                  height={q1Height}
+                  fill={colors[i]}
+                  opacity="0.8"
+                  rx="2"
+                />
+
+                {/* Planned indicator line */}
+                <line
+                  x1={x - barWidth / 2}
+                  y1={250 - plannedHeight}
+                  x2={x + barWidth / 2}
+                  y2={250 - plannedHeight}
+                  stroke={colors[i]}
+                  strokeWidth="2"
+                  strokeDasharray="3,2"
+                  opacity="0.6"
+                />
+
+                {/* Label */}
+                <text
+                  x={x}
+                  y="270"
+                  fontSize="8"
+                  fill="#9898B0"
+                  textAnchor="middle"
+                  fontWeight="600"
+                >
+                  {item.dept.split(' ')[0]}
+                </text>
+
+                {/* Values */}
+                <text
+                  x={x - barWidth / 4}
+                  y={250 - q4Height - 5}
+                  fontSize="8"
+                  fill="#9898B0"
+                  textAnchor="middle"
+                >
                   {item.q4_actual}
                 </text>
-
-                {/* Q1 Actual bar */}
-                <rect
-                  x={150 + item.q4_actual * 2.5}
-                  y={y + 5 + (maxValue - item.q1_actual) * 0.6}
-                  width={item.q1_actual * 2.5}
-                  height={item.q1_actual * 0.6}
-                  fill="#34C77B"
-                  rx="2"
-                />
-                <text x={150 + item.q4_actual * 2.5 + item.q1_actual * 2.5 + 4} y={y + 18} fontSize="9" fill="#9898B0">
-                  {item.q1_actual}
-                </text>
-
-                {/* Planned bar (dashed outline) */}
-                <rect
-                  x={170 + (item.q4_actual + item.q1_actual) * 2.5}
-                  y={y + 5 + (maxValue - item.planned) * 0.6}
-                  width={item.planned * 2.5}
-                  height={item.planned * 0.6}
-                  fill="none"
-                  stroke="rgba(138,135,196,0.5)"
-                  strokeWidth="2"
-                  strokeDasharray="2,2"
-                  rx="2"
-                />
-                <text x={170 + (item.q4_actual + item.q1_actual + item.planned) * 2.5 + 4} y={y + 18} fontSize="9" fill="#9898B0">
-                  {item.planned}
-                </text>
-
-                {/* Change indicator */}
                 <text
-                  x="420"
-                  y={y + 18}
-                  fontSize="10"
-                  fill={item.q1_actual > item.q4_actual ? '#34C77B' : item.q1_actual === item.q4_actual ? '#9898B0' : '#f28157'}
+                  x={x + barWidth / 4}
+                  y={250 - q1Height - 5}
+                  fontSize="8"
+                  fill="#F0F0F6"
+                  textAnchor="middle"
                   fontWeight="600"
-                  textAnchor="end"
                 >
-                  {item.q1_actual > item.q4_actual ? `+${item.q1_actual - item.q4_actual}` : item.q1_actual === item.q4_actual ? '—' : `${item.q1_actual - item.q4_actual}`}
+                  {item.q1_actual}
                 </text>
               </g>
             )
           })}
+
+          {/* X-axis */}
+          <line x1="40" y1="250" x2="560" y2="250" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
         </svg>
+
+        {/* Legend */}
+        <div style={{ display: 'flex', gap: '16px', marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.07)', fontSize: '10px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ width: '12px', height: '12px', background: 'rgba(255,255,255,0.3)', borderRadius: '2px' }} />
+            <span style={{ color: '#9898B0' }}>Q4 2025</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ width: '12px', height: '12px', background: 'rgba(255,255,255,0.6)', borderRadius: '2px' }} />
+            <span style={{ color: '#9898B0' }}>Q1 2026 Actual</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ width: '12px', height: '2px', background: 'rgba(255,255,255,0.5)', borderRadius: '1px' }} />
+            <span style={{ color: '#9898B0' }}>Planned</span>
+          </div>
+        </div>
+      </div>
       </div>
 
       {/* Department Health */}

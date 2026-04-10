@@ -146,52 +146,22 @@ function DashboardLayoutContent({
       {/* MAIN */}
       <div className="no-print" style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
         {/* TOPBAR */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 28px', borderBottom: '1px solid rgba(255,255,255,0.07)', background: 'rgba(13,13,20,0.85)', backdropFilter: 'blur(14px)', position: 'sticky', top: 0, zIndex: 5 }}>
-          <div style={{ fontSize: '11px', color: '#9898B0', display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <span>Snapshot: <em style={{ fontStyle: 'normal', color: '#9898B0' }}>{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} · Live Integration</em></span>
-            <div style={{ display: 'flex', gap: '4px', background: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.07)' }}>
-              {(['today', '7d', '30d', 'qtd', 'ytd'] as const).map((range) => (
-                <button
-                  key={range}
-                  onClick={() => setDateRange(range)}
-                  style={{
-                    padding: '4px 10px',
-                    borderRadius: '12px',
-                    fontSize: '10px',
-                    fontWeight: 600,
-                    border: 'none',
-                    cursor: 'pointer',
-                    background: dateRange === range ? 'rgba(98,94,233,0.2)' : 'transparent',
-                    color: dateRange === range ? '#b1affa' : '#9898B0',
-                    transition: 'all 0.2s',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (dateRange !== range) e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
-                  }}
-                  onMouseLeave={(e) => {
-                    if (dateRange !== range) e.currentTarget.style.background = 'transparent'
-                  }}
-                >
-                  {range === 'today' && 'Today'}
-                  {range === '7d' && '7D'}
-                  {range === '30d' && '30D'}
-                  {range === 'qtd' && 'QTD'}
-                  {range === 'ytd' && 'YTD'}
-                </button>
-              ))}
-            </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 28px', borderBottom: '1px solid rgba(255,255,255,0.05)', background: 'rgba(13,13,20,0.85)', backdropFilter: 'blur(14px)', position: 'sticky', top: 0, zIndex: 5 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '10px', color: '#9898B0' }}>
+            <span>{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+            <span style={{ opacity: 0.4 }}>•</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <span style={{ width: '3px', height: '3px', borderRadius: '50%', background: '#34C77B', animation: 'blink 2s infinite' }} />
+              Live
+            </span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <button onClick={handleShare} style={{ fontSize: '11px', fontWeight: 600, padding: '6px 14px', borderRadius: '20px', background: 'rgba(98,94,233,0.12)', color: '#b1affa', border: '1px solid rgba(98,94,233,0.25)', cursor: 'pointer', transition: 'all 0.2s', }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(98,94,233,0.2)' }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(98,94,233,0.12)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <button onClick={handleShare} style={{ fontSize: '10px', fontWeight: 600, padding: '6px 12px', borderRadius: '18px', background: 'transparent', color: '#9898B0', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.color = '#F0F0F6' }} onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#9898B0' }}>
               📤 Share
             </button>
-            <button onClick={() => { window.print(); }} style={{ fontSize: '11px', fontWeight: 600, padding: '6px 14px', borderRadius: '20px', background: 'rgba(98,94,233,0.12)', color: '#b1affa', border: '1px solid rgba(98,94,233,0.25)', cursor: 'pointer', transition: 'all 0.2s', }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(98,94,233,0.2)' }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(98,94,233,0.12)' }}>
+            <button onClick={() => { window.print(); }} style={{ fontSize: '10px', fontWeight: 600, padding: '6px 12px', borderRadius: '18px', background: 'transparent', color: '#9898B0', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.color = '#F0F0F6' }} onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#9898B0' }}>
               📄 Export
             </button>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', fontWeight: 600, padding: '5px 11px', borderRadius: '20px', background: 'rgba(52,199,123,0.12)', color: '#34C77B', border: '1px solid rgba(52,199,123,0.25)' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#34C77B', animation: 'blink 2s infinite' }} />
-              Live Data
-            </div>
           </div>
         </div>
 
