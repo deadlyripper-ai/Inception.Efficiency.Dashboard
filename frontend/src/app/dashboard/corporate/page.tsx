@@ -235,7 +235,6 @@ export default function CorporatePage() {
           </div>
         </div>
       </div>
-      </div>
 
       {/* Department Health */}
       <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.16em', color: '#5E5E78', textTransform: 'uppercase', marginBottom: '13px', display: 'flex', alignItems: 'center', gap: '10px' }}>

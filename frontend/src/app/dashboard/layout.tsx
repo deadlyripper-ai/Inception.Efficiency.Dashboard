@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { CommandPalette } from '@/components/ui/CommandPalette'
 import { PrintReport } from '@/components/ui/PrintReport'
-import { DateRangeProvider, useDateRange } from '@/lib/date-range-context'
+import { DateRangeProvider } from '@/lib/date-range-context'
 
 const navSections = {
   navigate: [
@@ -30,7 +30,6 @@ function DashboardLayoutContent({
   const pathname = usePathname()
   const isActive = (href: string) => pathname === href
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false)
-  const { dateRange, setDateRange } = useDateRange()
   const [shareToast, setShareToast] = React.useState(false)
 
   const handleShare = () => {
